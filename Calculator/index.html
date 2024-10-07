@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Calculator | Project</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+    <style>
+        .calc-btn {
+            width: 60px;
+            height: 60px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .calc-display {
+  background-color: rgb(210, 196, 196);
+  color: white;
+  height: 100px;
+  width: 310px;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1.3rem;
+  /* Additional styles to ensure it remains visible */
+  border: 1px solid #ccc; /* Optional border for better visibility */
+  overflow: hidden; /* Hide overflow if necessary */
+}
+        .inputString, .expressionString, .valueString {
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container p-5">
+      <div class="d-flex justify-content-center">
+        <div class="col-sm-12 col-md-4 col-lg-4">
+          <div class="card">
+            <div class="d-flex justify-content-center align-items-center p-3">
+              <div class="row">
+                  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 calc-display">
+                    <div class="expressionString"></div>
+                    <div class="inputString"></div>
+                    <!-- <div class="valueString"></div> -->
+                  </div>
+                 </div>
+                </div>
+
+            <div class="d-flex justify-content-center align-items-center p-3">
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                  <button type="button" class="btn btn-light calc-btn" style="font-size: 0.9rem;" data-event_key="Num Lock">Num Lock</button>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                <button type="button" class="btn btn-light calc-btn" data-event_key="CE">CE</button>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                 <button type="button" class="btn btn-light calc-btn" data-event_key="Del">Del</button>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                <button type="button" class="btn btn-light calc-btn" data-event_key="/">/</button>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center p-3">
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                  <button type="button" class="btn btn-light calc-btn" data-event_key="7">7</button>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                <button type="button" class="btn btn-light calc-btn" data-event_key="8">8</button>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                 <button type="button" class="btn btn-light calc-btn" data-event_key="9">9</button>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                <button type="button" class="btn btn-light calc-btn" data-event_key="*">*</button>
+                </div>
+            </div>
+        </div>
+            <div class="d-flex justify-content-center align-items-center p-3">
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                  <button type="button" class="btn btn-light calc-btn" data-event_key="4">4</button>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                <button type="button" class="btn btn-light calc-btn" data-event_key="5">5</button>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                 <button type="button" class="btn btn-light calc-btn" data-event_key="6">6</button>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                <button type="button" class="btn btn-light calc-btn" data-event_key="-">-</button>
+                </div>
+            </div>
+        </div>
+            <div class="d-flex justify-content-center align-items-center p-3">
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                  <button type="button" class="btn btn-light calc-btn" data-event_key="1">1</button>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                <button type="button" class="btn btn-light calc-btn" data-event_key="2">2</button>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                 <button type="button" class="btn btn-light calc-btn" data-event_key="3">3</button>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                <button type="button" class="btn btn-light calc-btn" data-event_key="+">+</button>
+                </div>
+            </div>
+        </div>
+            <div class="d-flex justify-content-center align-items-center p-3">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <button type="button" class="btn btn-light calc-btn" style="width: 150px;" data-event_key="0">0</button>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                 <button type="button" class="btn btn-light calc-btn" data-event_key=".">.</button>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                <button type="button" class="btn btn-light calc-btn" data-event_key="=">=</button>
+                </div>
+            </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function () {
+  let inputString = '';
+  let expressionString = '';
+  let valueString = '';
+  let numLockActive = false; // Flag to track Num Lock state
+
+  // Function to update display
+  function updateDisplay() {
+    $('.inputString').text(inputString);
+    $('.expressionString').text(expressionString);
+    $('.valueString').text(valueString);
+  }
+
+  // Function to handle button enable/disable
+  function toggleButtons(enable) {
+    $('.calc-btn').not('[data-event_key="Num Lock"]').prop('disabled', !enable);
+    // Ensure calc-display is not affected
+    $('.calc-display').removeClass('disabled'); // Remove any disabled class if added
+  }
+
+  // Handle button clicks
+  $('.calc-btn').click(function () {
+    const key = $(this).data('event_key');
+    handleInput(key);
+  });
+
+  // Handle keyboard inputs
+  $(document).on('keydown', function (e) {
+    let key = e.key;
+
+    // Map keyboard keys to calculator keys
+    if (key === 'Enter') key = '=';
+    if (key === 'Backspace') key = 'Del';
+
+    // Check if the key is allowed and handle input
+    const allowedKeys = '0123456789+-*/.=CE';
+    if (allowedKeys.includes(key) || key === 'Del') {
+      handleInput(key);
+    }
+  });
+
+  // Function to handle input
+  function handleInput(key) {
+    if (key === 'Num Lock') {
+      numLockActive = !numLockActive;
+      toggleButtons(!numLockActive);
+      return; // Skip further processing for Num Lock
+    }
+
+    if (numLockActive) return; // Ignore other inputs if Num Lock is active
+
+    if (key === 'CE') {
+      inputString = '';
+      expressionString = '';
+      valueString = '';
+    } else if (key === 'Del') {
+      inputString = inputString.slice(0, -1);
+    } else if (key === '=') {
+      try {
+        valueString = eval(inputString);
+        expressionString = inputString + ' =';
+        inputString = valueString.toString();
+      } catch (e) {
+        valueString = 'Error';
+      }
+    } else {
+      inputString += key;
+    }
+
+    updateDisplay();
+  }
+
+  // Initialize display
+  updateDisplay();
+});
+
+    </script>
+</body>
+</html>
